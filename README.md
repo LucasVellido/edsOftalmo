@@ -114,26 +114,26 @@ md-free-angular-cli
 │   │   │   ├── notifications.component.html
 │   │   │   ├── notifications.component.spec.ts
 │   │   │   └── notifications.component.ts
-│   │   ├── table-list
-│   │   │   ├── table-list.component.css
-│   │   │   ├── table-list.component.html
-│   │   │   ├── table-list.component.spec.ts
-│   │   │   └── table-list.component.ts
-│   │   ├── typography
-│   │   │   ├── typography.component.css
-│   │   │   ├── typography.component.html
-│   │   │   ├── typography.component.spec.ts
-│   │   │   └── typography.component.ts
+│   │   ├── list-formulary
+│   │   │   ├── list-formulary.component.css
+│   │   │   ├── list-formulary.component.html
+│   │   │   ├── list-formulary.component.spec.ts
+│   │   │   └── list-formulary.component.ts
+│   │   ├── formulary-ophtalmologisty
+│   │   │   ├── formulary-ophtalmologisty.component.css
+│   │   │   ├── formulary-ophtalmologisty.component.html
+│   │   │   ├── formulary-ophtalmologisty.component.spec.ts
+│   │   │   └── formulary-ophtalmologisty.component.ts
 │   │   ├── upgrade
 │   │   │   ├── upgrade.component.css
 │   │   │   ├── upgrade.component.html
 │   │   │   ├── upgrade.component.spec.ts
 │   │   │   └── upgrade.component.ts
-│   │   └── user-profile
-│   │       ├── user-profile.component.css
-│   │       ├── user-profile.component.html
-│   │       ├── user-profile.component.spec.ts
-│   │       └── user-profile.component.ts
+│   │   └── list-patients
+│   │       ├── list-patients.component.css
+│   │       ├── list-patients.component.html
+│   │       ├── list-patients.component.spec.ts
+│   │       └── list-patients.component.ts
 │   ├── assets
 │   │   ├── css
 │   │   │   └── demo.css

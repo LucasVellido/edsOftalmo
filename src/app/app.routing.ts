@@ -19,9 +19,9 @@ const routes: Routes =[
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]}
     // { path: 'dashboard',      component: DashboardComponent },
-    // { path: 'user-profile',   component: UserProfileComponent },
-    // { path: 'table-list',     component: TableListComponent },
-    // { path: 'typography',     component: TypographyComponent },
+    // { path: 'list-patients',   component: listPatientsComponent },
+    // { path: 'list-formulary',     component: ListFormularyComponent },
+    // { path: 'formulary-ophtalmologisty',     component: FormularyOphtalmologistyComponent },
     // { path: 'icons',          component: IconsComponent },
     // { path: 'maps',           component: MapsComponent },
     // { path: 'notifications',  component: NotificationsComponent },

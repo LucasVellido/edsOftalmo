@@ -1,0 +1,79 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-success">
+                        <h3 class="card-title ">Pacientes</h3>
+                        <div class="row">                            
+                            <div class="col-md-4">
+                                <div class="input-group no-border">
+                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs pull-right" data-tabs="tabs" routerLink="patient-record">
+                                        <li class="nav-item">
+                                            <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                                <i class="material-icons">content_paste</i> Criar Ficha
+                                                <div class="ripple-container"></div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table-hover">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        FICHA
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Idade
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Salary
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let patient of arrayPatients">
+                                        <td>
+                                            {{ patient.id }}
+                                        </td>
+                                        <td>
+                                            {{ patient.name }}
+                                        </td>
+                                        <td>
+                                            {{ patient.age }}
+                                        </td>
+                                        <td>
+                                            {{ patient.status }}
+                                        </td>
+                                        <td>
+                                            <button mat-raised-button routerLink="patient-record" class="btn btn-warning pull-right">VER
+                                                FICHA</button>
+                                        </td>
+                                    </tr>                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
