@@ -1,3 +1,8 @@
-input, textarea { 
+input::placeholder {
+    font-size: 20px;
+    color: #fff;
+  }
+
+  td {
     text-transform: uppercase;
-}
+  }

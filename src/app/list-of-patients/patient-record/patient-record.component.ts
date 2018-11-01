@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 
 @Component({
     selector: 'app-patient-record',
@@ -8,44 +10,76 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class PatientRecordComponent implements OnInit {
 
-    form: FormGroup;
-    
-    public patient = {
-        "id":5,
-        "age":27,
-        "dateOfBirth":27,
-        "rg":"34.434.355-43",
-        "name":"Jessica de Souza Berttoti",
-        "street":"R. Qualquer",
-        "district":"Jardim da Paineiras",
-        "complement":"Apartamento 188, sala 122",
-        "city":"Campinas",
-        "observation":"Esse paciente consta com astigmatismo de 0,75 no olho direito sem possibilidade de círurgia",
-    }
+    public form: FormGroup;
+    public labelBtn: string = 'SALVAR';
+    public listGenders = [
+        { id: 1, description: 'Masculino' },
+        { id: 2, description: 'Feminino' }
+    ]
+    public patient: any = {};
 
-    constructor() { }
+    constructor(private http: HttpClient,
+        private activatedRoute: ActivatedRoute,
+        private router: Router) { }
 
     ngOnInit() {
         this.form = new FormGroup({
-            'name' : new FormControl(null, Validators.required),
-            'age' : new FormControl({value: null, disabled: true}),
-            'dateOfBirth' : new FormControl(null,[Validators.required]),
-            'rg' : new FormControl(null, Validators.required),
-            'district' : new FormControl(null, Validators.required),
-            'street' : new FormControl(null, Validators.required),
-            'complement' : new FormControl(null),
-            'city' : new FormControl(null, Validators.required),
-            'observation' : new FormControl(null),
-          });
+            'id': new FormControl(null),
+            'name': new FormControl(null, Validators.required),
+            'gender': new FormControl(null, [Validators.required]),
+            'birthDate': new FormControl(null, [Validators.required]),
+            'age': new FormControl({ value: null, disabled: true }),
+            'rg': new FormControl(null, Validators.required),
+            'neighborhood': new FormControl(null, Validators.required),
+            'street': new FormControl(null, Validators.required),
+            'complement': new FormControl(null),
+            'city': new FormControl(null, Validators.required),
+            'observations': new FormControl(null),
+        });
 
-          this.form.get('dateOfBirth').valueChanges.subscribe((value)=>{
-                // contaaaa
-                this.form.get('age').setValue(value);
-          });
+        this.form.get('birthDate').valueChanges.subscribe((birthDate) => {
+            let dateUpdated = new Date(birthDate)
+            this.calculateAge(dateUpdated);
+        });
+
+        this.activatedRoute.params.subscribe((param: Params) => {
+            if (param['id'] && !isNaN(+param['id'])) {
+                this.http.get('http://10.10.10.154:8090/patients/' + param['id']).subscribe(resp => {
+                    this.patient = resp;
+                    this.form.patchValue(resp);
+                    this.form.disable();
+                }, error => console.error(error))
+            }
+        });
     }
 
-    public onSubmit(): void{
-        console.log(this.form.value);
-    }   
+    public onSubmit(): void {
+        if (this.form.get('id').value == null) {
+            /* CREATE */
+            this.http.post('http://10.10.10.154:8090/patients', this.form.value).subscribe(resp => {
+                this.router.navigate(['list-patients']);
+            }, error => console.error(error));
+        } else {
+            /* UPDATE */
+            this.http.put('http://10.10.10.154:8090/patients', this.form.value).subscribe(resp => {
+                this.router.navigate(['list-patients']);
+            }, error => console.error(error));
+        }
+    }
 
+    public updatePatientRecord(): void {
+        this.labelBtn = 'ATUALIZAR'
+        this.form.enable();
+    }
+
+    public calculateAge(birthDate): void {
+        if (birthDate) {
+            let today: Date = new Date();
+            let age = today.getFullYear() - new Date(birthDate).getFullYear();
+            if (new Date(today.getFullYear(), today.getMonth(), new Date().getDate()) <
+                new Date(today.getFullYear(), new Date(birthDate).getMonth(), new Date(birthDate).getDate()))
+                age--;
+            this.form.get('age').setValue(age);
+        }
+    }
 }

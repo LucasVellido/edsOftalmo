@@ -8,7 +8,7 @@
                         <div class="row">                            
                             <div class="col-md-4">
                                 <div class="input-group no-border">
-                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <input type="text" style="font-size: 22px; color: #fff" class="form-control" placeholder="Buscar...">
                                     <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
                                         <i class="material-icons">search</i>
                                     </button>
@@ -45,7 +45,13 @@
                                         Status
                                     </th>
                                     <th>
-                                        Salary
+                                        Gênero
+                                    </th>
+                                    <th>
+                                        
+                                    </th>
+                                    <th>
+                                        
                                     </th>
                                 </thead>
                                 <tbody>
@@ -63,8 +69,15 @@
                                             {{ patient.status }}
                                         </td>
                                         <td>
-                                            <button mat-raised-button routerLink="patient-record" class="btn btn-warning pull-right">VER
-                                                FICHA</button>
+                                            {{ patient.gender }}
+                                        </td>
+                                        <td>
+                                                <button mat-raised-button routerLink="patient-record" class="btn btn-default pull-right"
+                                                (click)="openFormularyOphtalmologisty(patient.id)"> AGENDAR CONSULTA</button>
+                                        </td>
+                                        <td>
+                                            <button mat-raised-button routerLink="patient-record" class="btn btn-warning pull-right" 
+                                            (click)="openFormularyOphtalmologisty(patient.id)"> VER FICHA</button><!-- [routerLink]="['patient-record', patient.id]" -->
                                         </td>
                                     </tr>                                   
                                 </tbody>
